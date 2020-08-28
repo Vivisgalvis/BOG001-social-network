@@ -1,7 +1,7 @@
 body {
-    background: url(/src/images/foodie1.jpeg) no-repeat center center;
+    background: url(./images/foodie1.jpeg) no-repeat center center fixed;
     background-size: cover;
-    background-image : linear-gradient (0deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8));
+    background-image : linear-gradient (0deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)); 
 }
 
 .logo {
