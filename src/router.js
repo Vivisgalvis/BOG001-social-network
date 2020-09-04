@@ -1,26 +1,38 @@
-import home from "./views/home.js";
-import login from "./views/login.js";
-import signup from "./views/singup.js";
+import inicio from "./views/home.js";
+import ingreso from "./views/login.js";
+import registro from "./views/singup.js";
 
-const router = async (route) => {
-  const container = document.querySelector("#root");
-  let page = home;
+const container = document.querySelector("#root");
+let background = document.body.style
+const router = (route) => {
+container.innerHTML = '';
+  // console.log(route);
   switch (route) {
-    case "#home":
-      container.innerHTML = await page.render();
+    case '#home':
+      const page = inicio();  
+      background.backgroundImage = "url('./images/foodie1.jpeg')";  
+      container.appendChild(page);
       break;
-    case "#login":
-      let page = login;
-      container.innerHTML = await page.render();
+    case '#login':
+      const page2 = ingreso();
+      background.backgroundImage = "url('./images/foodie2.jpeg')";
+      container.appendChild(page2);
       break;
-    case "#signup":
-      let page = signup;
-      container.innerHTML = await page.render();
+    case '#signup':
+      const page3 = registro();
+      background.backgroundImage = "url('./images/foodie3.jpeg')";
+      container.appendChild(page3); 
+      break;
     default:
-      page = home;
-      container.innerHTML = await page.render();
+    // const first = inicio();
+    // container.appendChild(first);
+      // page = home;
+      // container.innerHTML = await page.render();
       break;
   }
 };
 
 export default router;
+
+// aplicar para cambiar la img de fondo en cada ruta 
+// document.body.style.backgroundImage = "urlimage"

@@ -1,12 +1,12 @@
-const home = {
-  render: async () => {
-    const view = `
-    <div class="contain">
-      <img class="cont-img" src="./images/foodie1.jpeg" alt="">
-    </div>
+import router from "../router.js";
+
+export default () => {
+  // render: async () => {
+  const home = `
+      <div class="overlay"></div>
     <section>
     <div class="contain-logo">
-    <a href="/#home"><img class="logo" src="./images/logo.png" alt=""></a>
+    <img class="logo" src="./images/logo.png" alt="">
     </div>
     <div class="text">
       <p class="text-1">What are you waiting for...</p>
@@ -20,8 +20,11 @@ const home = {
       <button class="log" type="submit"><a href="/#login">log in</a> </button>
     </div> 
 `;
-    return view;
-  },
+  // console.log(home);
+  const vistaInicio = document.createElement("div");
+  vistaInicio.innerHTML = home;
+  return vistaInicio;
 };
+// };
 
-export default home;
+// export default home;
