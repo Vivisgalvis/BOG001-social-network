@@ -1,5 +1,5 @@
 export default () => {
-  // render: async () => {
+ 
     const login = `
     <div class="overlay"></div>
     <section>
@@ -8,9 +8,9 @@ export default () => {
     </div>
     <div class="login">
       <label class="em-pa" for="">E-mail:</label>
-      <input class="space" type="text">
+      <input class="space" type="email" placeholder="correo@correo.com" autocomplete="off" required>
       <label class="em-pa" for="">Password:</label>
-      <input class="space" type="password"><!--<i class="far fa-eye"> </i> --> <i class="far fa-eye-slash eye-sign"></i>
+      <input class="space" type="password" placeholder="Password" autocomplete="off" required><!--<i class="far fa-eye"> </i> --> <i class="far fa-eye-slash eye-sign"></i>
       <input class="check" type="checkbox">
       <label class="remember" for="">Remember me</label>
     </div>
@@ -28,13 +28,10 @@ export default () => {
       <p class="food">Not a foodiebook member?</p>
     </div>
     <div class="member">
-      <p class="here">Sign up here.</p>
+      <p class="here"><a href="/#signup">Sign up here.</a></p>
     </div>
     `;
     const vistaLogin = document.createElement("div");
   vistaLogin.innerHTML = login;
   return vistaLogin;
   }
-// };
-
-// export default login;

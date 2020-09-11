@@ -3,7 +3,7 @@
 // import { myFunction } from './lib/index.js';
 
 // myFunction();
-
+router(window.location.hash);
 import router from './router.js';
 window.addEventListener('hashchange', () => {
     router(window.location.hash);

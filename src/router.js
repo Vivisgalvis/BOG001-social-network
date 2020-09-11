@@ -5,25 +5,32 @@ import registro from "./views/singup.js";
 const container = document.querySelector("#root");
 let background = document.body.style
 const router = (route) => {
-container.innerHTML = '';
+//container.innerHTML = '';
   // console.log(route);
   switch (route) {
-    case '#home':
+    case '':
+      container.innerHTML = '';
       const page = inicio();  
       background.backgroundImage = "url('./images/foodie1.jpeg')";  
       container.appendChild(page);
       break;
     case '#login':
+      container.innerHTML = '';
       const page2 = ingreso();
       background.backgroundImage = "url('./images/foodie2.jpeg')";
       container.appendChild(page2);
       break;
     case '#signup':
+      container.innerHTML = '';
       const page3 = registro();
       background.backgroundImage = "url('./images/foodie3.jpeg')";
       container.appendChild(page3); 
       break;
-    default:
+    case '#welcome':
+        console.log("Bienvenido a FoodieFook")
+        break;
+    
+      default:
     // const first = inicio();
     // container.appendChild(first);
       // page = home;

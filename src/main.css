@@ -214,9 +214,12 @@ body {
     margin-top: -1%;
 }
 
-.here {
+
+
+.here a{
     color: #324376;
     margin: 2%;
+    text-decoration: none;
 }
 
     /* vista sign up */

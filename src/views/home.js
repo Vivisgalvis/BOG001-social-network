@@ -1,7 +1,7 @@
 import router from "../router.js";
 
 export default () => {
-  // render: async () => {
+  
   const home = `
       <div class="overlay"></div>
     <section>
@@ -20,11 +20,10 @@ export default () => {
       <button class="log" type="submit"><a href="/#login">log in</a> </button>
     </div> 
 `;
-  // console.log(home);
+ 
   const vistaInicio = document.createElement("div");
   vistaInicio.innerHTML = home;
   return vistaInicio;
 };
-// };
 
-// export default home;
+
