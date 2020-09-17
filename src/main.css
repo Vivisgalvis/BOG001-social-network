@@ -142,10 +142,13 @@ body {
     margin-top: 7%;
 }
 
-.eye-sign {
+span, .eye {
     margin-left: 68%;
     margin-top: -22px;
 }
+
+
+
 
 .remember {
     text-align: center;
