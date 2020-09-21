@@ -1,6 +1,7 @@
 import inicio from "./views/home.js";
 import ingreso from "./views/login.js";
 import registro from "./views/singup.js";
+import posts from "./views/timeLine.js"
 
 const container = document.querySelector("#root");
 let background = document.body.style
@@ -27,6 +28,10 @@ const router = (route) => {
       container.appendChild(page3); 
       break;
     case '#welcome':
+        container.innerHTML = "";
+        const page4 = posts();
+        background.backgroundImage = "url('./images/foodie3.jpeg')";
+        container.appendChild(page4);
         console.log("Bienvenido a FoodieFook")
         break;
     
