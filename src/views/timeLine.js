@@ -42,7 +42,7 @@ form.addEventListener ('submit', (e) => {
     crear(form);
 });
 
-     /* ------ PUBLICAR POST -------*/
+    /* ------ PUBLICAR POST -------*/
 
 const btnEditar = crearPost.querySelector("#btn-editar");
 const data = form.querySelector("#data");
