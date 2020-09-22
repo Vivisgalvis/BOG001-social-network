@@ -23,7 +23,7 @@ export default () => {
         <label class="em-pa" for="">Password:</label>
         <input id="password" class="space" type="password" placeholder="Password" autocomplete="off" required> 
         <span class="eye">
-        <i class="fas fa-eye-slash" id="eye-close"></i> <i class="fas fa-eye " id="eye-open"></i>
+        <i class="fas fa-eye-slash" id="eye-close"></i> <i class="fas fa-eye " id="eye-open" style="display:none"></i>
         </span>
       </section> 
       <div class="buttons">
