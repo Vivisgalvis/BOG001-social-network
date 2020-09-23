@@ -4,7 +4,7 @@ import { logueo, signUpGoo } from "../lib/functionsFireBase.js";
 export default () => {
   const loginUsuario = document.createElement("div");
   const seccionLogUsuario = document.createElement("section")
- 
+
   seccionLogUsuario.innerHTML = `
   <form id="formLogin">
   <div class="overlay"></div>
@@ -41,48 +41,50 @@ export default () => {
   </div>
   </form> 
   `;
-    loginUsuario.appendChild(seccionLogUsuario);
-    const form = loginUsuario.querySelector("#formLogin");
+  loginUsuario.appendChild(seccionLogUsuario);
+  const form = loginUsuario.querySelector("#formLogin");
 
-    /* ------ OCULTAR/MOSTRAR CONTRASEÑA -------*/
-    const togglePassword1 = () => {
-      const pwd = loginUsuario.querySelector('#passLogin');
-      const eyeOpen = loginUsuario.querySelector('#eye-open');
-      const eyeClose = loginUsuario.querySelector('#eye-close');
-  
-      if (pwd.type === 'password') {
-        pwd.type = 'text';
-        eyeOpen.style.display = 'block';
-        eyeClose.style.display = 'none';
-      } else {
-        pwd.type = 'password';
-        eyeOpen.style.display = 'none';
-        eyeClose.style.display = 'block';
-      }
-    };
-    const eyeIcons = loginUsuario.querySelector('.eye');
-    eyeIcons.addEventListener('click', togglePassword1);
-  
+  /* ------ OCULTAR/MOSTRAR CONTRASEÑA -------*/
+  const togglePassword1 = () => {
+    const pwd = loginUsuario.querySelector('#passLogin');
+    const eyeOpen = loginUsuario.querySelector('#eye-open');
+    const eyeClose = loginUsuario.querySelector('#eye-close');
 
-/* ------ INGRESAR A LA APLICACION -------*/
-    form.addEventListener ('submit', (e) => {
-      //console.log(e)
-      e.preventDefault();
-      const emailLog = form.emailLog.value;
-      const passwordLog = form.passLogin.value;
-      logueo(emailLog,passwordLog);
-    });
-
-    /* ------ INGRESAR CON GOOGLE -------*/
-    const google = loginUsuario.querySelector("#gooLogin");
-
-    google.addEventListener('click', (e) => {
-      e.preventDefault();
-      //console.log(signUpGoo)
-      signUpGoo();
-      
-    });
-    return loginUsuario;
+    if (pwd.type === 'password') {
+      pwd.type = 'text';
+      eyeOpen.style.display = 'block';
+      eyeClose.style.display = 'none';
+    } else {
+      pwd.type = 'password';
+      eyeOpen.style.display = 'none';
+      eyeClose.style.display = 'block';
     }
+  };
+  const eyeIcons = loginUsuario.querySelector('.eye');
+  eyeIcons.addEventListener('click', togglePassword1);
+
+
+  /* ------ INGRESAR A LA APLICACION -------*/
+  form.addEventListener('submit', (e) => {
+    //console.log(e)
+    e.preventDefault();
+    // const emailLog = form.emailLog.value;
+    // const passwordLog = form.passLogin.value;
+    const emailLog = form.querySelector('#emailLog').value;
+    const passwordLog = form.querySelector('#passLogin').value;
+    logueo(emailLog, passwordLog);
+  });
+
+  /* ------ INGRESAR CON GOOGLE -------*/
+  const google = loginUsuario.querySelector("#gooLogin");
+
+  google.addEventListener('click', (e) => {
+    e.preventDefault();
+    //console.log(signUpGoo)
+    signUpGoo();
+
+  });
+  return loginUsuario;
+}
 
 

@@ -32,7 +32,7 @@ const router = (route) => {
         const page4 = posts();
         background.backgroundImage = "url('./images/foodie3.jpeg')";
         container.appendChild(page4);
-        console.log("Bienvenido a FoodieFook")
+        //console.log("Bienvenido a FoodieFook")
         break;
     
       default:
