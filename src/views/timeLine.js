@@ -2,6 +2,12 @@ import { crear } from "../lib/functionsFireBase.js"
 import  leerPost  from "../lib/functionsFireBase.js"
 
 
+export const manejadorEvento = (e) => {
+  e.preventDefault();
+  
+  crear(e.target);
+}
+
 export default () => {
     const crearPost = document.createElement ("div");
     const seccionPost = document.createElement("section");
@@ -11,8 +17,7 @@ export default () => {
     <form id="formTimeLine">
     <div class="container">
     <h1>Agregar Post</h1>
-    <!--<input type="text" id="posts" placeholder="Que estas pensando!!!" autocomplete="off">-->
-    <textarea name="" id="posts" cols="30" rows="10"></textarea>
+   <textarea name="" id="posts" cols="30" rows="10"></textarea>
     <div class="buttons">
     <button id="btn-publicar" type="submit">Publicar</button>
     </div>
@@ -32,7 +37,7 @@ export default () => {
     `;
     
     crearPost.appendChild(seccionPost); 
-    const form = crearPost.querySelector("#formTimeLine");
+    //const form = crearPost.querySelector("#formTimeLine");
 
      /* ------ LEER POST -------*/
 
@@ -42,17 +47,17 @@ export default () => {
 
 
     /* ------ AGREGAR POST -------*/
+  const btnPublicar = crearPost.querySelector("#btn-publicar")
+    
+btnPublicar.addEventListener ('submit',  manejadorEvento);
 
-form.addEventListener ('submit', (e) => {
-    e.preventDefault();
-    const post = form.posts.value;
-    crear(form);
-});
 
-   /* ------ ELIMINAR POSTS -------*/
 
-  
-
-    return crearPost
+return crearPost
 }
+ /*export const manejadorEvento = (e) => {
+  e.preventDefault();
+  
+  crear(e.target);
+}*/
 

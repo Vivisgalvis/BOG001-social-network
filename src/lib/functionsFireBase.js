@@ -1,3 +1,6 @@
+//import { editar } from "../views/timeLine.js"
+import { manejadorEvento } from '../views/timeLine.js'
+
 /*Ingresar a la aplicacion*/
 
 function logueo (email,password){
@@ -61,44 +64,45 @@ function signUpGoo() {
     dataPost.innerHTML = "";
 
     querySnapshot.forEach((doc) => {
-      console.log(doc);
+     
+      const post = document.createElement("div")
+        post.className = 'container-post'
 
-        dataPost.innerHTML += `
-        <!--<tr>
-        <th scope="row"></th>-->
-        <div class="container-post">
+        post.innerHTML = `
         <p>${doc.data().first}</p>
-        <button class="btn-eliminar" >Eliminar</button>
-        <!--<button clas="btn-editar" click="editar('${doc.id}','${doc.data().first}')">Editar</button>-->
-        </div>
-        <!--</tr>-->
+        <button class="btn-eliminar" data-id='${doc.id}' >Eliminar</button>
+        <button class="btn-editar" data-id='${doc.id}'  data-post='${doc.data().first}'>Editar</button>
+        
        `
+      /*-------EVENTO ELIMINAR POST--------*/ 
 
-       const btnsEliminar = dataPost.querySelectorAll(".btn-eliminar") ;
-    console.log(btnsEliminar)
-
-    btnsEliminar.forEach((btnEliminar) => {
-      btnEliminar.addEventListener('click', (e) => {
+       const btnEliminar = post.querySelector(".btn-eliminar") ;
+       
+       btnEliminar.addEventListener('click', (e) => {
         e.preventDefault();
-        console.log("Eliminado")
-        eliminar(('${doc.id}'));
-      })
+        let id = doc.id
+        eliminar(id);
+      
     })
+      
+    /*-------EVENTO EDITAR POST--------*/ 
+
+    const btnEditar = post.querySelector(".btn-editar") ;
+    
+     btnEditar.addEventListener('click', (e) => {
+     e.preventDefault();
+     let idEditar = doc.id;
+     let postEditar = doc.data().first
+     editar(idEditar,postEditar);
+  
+ })
+
+    dataPost.appendChild(post)
+
     });
+    /*-------ELIMINAR POSTS --------*/ 
 
-    /*const btnsEliminar = dataPost.querySelectorAll(".btn-eliminar") ;
-    console.log(btnsEliminar)
-
-    btnsEliminar.forEach((btnEliminar) => {
-      btnEliminar.addEventListener('click', (e) => {
-        e.preventDefault();
-        console.log("Eliminado")
-        eliminar(doc.dataset.id);
-      })
-    })*/
-
-});
-function eliminar(id){
+ function eliminar(id){
 
   const btnEliminarPost = dataPost.querySelector(".btn-Eliminar");
   //btnEliminarPost.dataset.id
@@ -110,7 +114,10 @@ function eliminar(id){
       console.error("Error removing document: ", error);
   });
 }
- return dataPost;
+
+});
+
+  return dataPost;
 } 
 
 /*-------Agregar Post--------*/ 
@@ -121,6 +128,8 @@ function eliminar(id){
   function crear(form){
     //const form = crearPost.querySelector("#formTimeLine");
       const posts = form.querySelector("#posts").value;
+      
+      
 
     db.collection("posts").add({
         first: posts
@@ -129,17 +138,18 @@ function eliminar(id){
     .then(function(docRef) {
         //console.log("Document written with ID: ", docRef.id);
         const posts = form.querySelector("#posts").value = "";
+        
     })
     .catch(function(error) {
         console.error("Error adding document: ", error);
     });
 };
 
-/*---- ELIMINAR POSTS ---- */
+ /*-------ELIMINAR POSTS --------*/ 
 
-/*function eliminar(id){
+ /*function eliminar(id){
 
-  //const btnEliminarPost = dataPost.querySelector(".btn-Eliminar");
+  const btnEliminarPost = dataPost.querySelector(".btn-Eliminar");
   //btnEliminarPost.dataset.id
 
   db.collection("posts").doc(id).delete().then(function() {
@@ -148,7 +158,40 @@ function eliminar(id){
   }).catch(function(error) {
       console.error("Error removing document: ", error);
   });
-}*/
+}/*
+
+
+/*-------EDITAR POSTS --------*/
+
+function editar(id,posts){
+
+  document.querySelector("#posts").value = posts;
+  let boton = document.querySelector("#btn-publicar");
+  boton.innerHTML = 'Editar';
+  boton.removeEventListener('submit' , manejadorEvento)
+  boton.addEventListener('click' , manejadorEdicion )
+
+ function manejadorEdicion (){
+      var dataRef = db.collection("posts").doc(id);
+      const posts = document.querySelector("#posts").value;
+
+      return dataRef.update({
+          first: posts 
+      })
+      .then(function() {
+          console.log("Document successfully updated!");
+          boton.innerHTML = 'Publicar';
+          boton.removeEventListener('click' , manejadorEdicion)
+
+          boton.addEventListener('submit' , manejadorEvento)
+          document.querySelector("#posts").value = "";
+      })
+      .catch(function(error) {
+          // The document probably doesn't exist.
+          console.error("Error updating document: ", error);
+      });
+  }
+}
 
 export {signUpGoo, registrar, logueo, crear};
 
