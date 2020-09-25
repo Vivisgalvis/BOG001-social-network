@@ -7,7 +7,6 @@ function logueo (email,password){
   .catch( function(error) {
     var errorCode = error.code;
     var errorMessage = error.message;
-   
     });
 }
 
@@ -19,12 +18,12 @@ function registrar(email ,password){
     firebase.auth().createUserWithEmailAndPassword(email,password).then((result)=> {
     firebase.auth().signInWithEmailAndPassword(email,password).then((result2)=> {
     window.location.hash = "#welcome";
-   }) 
- })
- .catch( function(error) {
- var errorCode = error.code;
- var errorMessage = error.message;
- });
+  }) 
+})
+.catch( function(error) {
+var errorCode = error.code;
+var errorMessage = error.message;
+});
 }
 
 
@@ -61,41 +60,30 @@ function signUpGoo() {
     dataPost.innerHTML = "";
 
     querySnapshot.forEach((doc) => {
-      console.log(doc);
-
+      
         dataPost.innerHTML += `
-        <!--<tr>
-        <th scope="row"></th>-->
+        
         <div class="container-post">
         <p>${doc.data().first}</p>
-        <button class="btn-eliminar" >Eliminar</button>
-        <!--<button clas="btn-editar" click="editar('${doc.id}','${doc.data().first}')">Editar</button>-->
+        <button class="btn-eliminar" data-id='${doc.id}' >Eliminar</button>
+        <button class="btn-editar" data-id='${doc.id}' data-post='${doc.data().first}'>Editar</button>
         </div>
-        <!--</tr>-->
-       `
+      `
+      // EVENTO DE ELIMINAR POST
 
-       const btnsEliminar = dataPost.querySelectorAll(".btn-eliminar") ;
+    const btnsEliminar = dataPost.querySelectorAll(".btn-eliminar") ;
     console.log(btnsEliminar)
-
+      
     btnsEliminar.forEach((btnEliminar) => {
       btnEliminar.addEventListener('click', (e) => {
         e.preventDefault();
-        console.log("Eliminado")
-        eliminar(('${doc.id}'));
+        let id = e.target.getAttribute('data-id');
+        eliminar(id);
       })
     })
     });
 
-    /*const btnsEliminar = dataPost.querySelectorAll(".btn-eliminar") ;
-    console.log(btnsEliminar)
 
-    btnsEliminar.forEach((btnEliminar) => {
-      btnEliminar.addEventListener('click', (e) => {
-        e.preventDefault();
-        console.log("Eliminado")
-        eliminar(doc.dataset.id);
-      })
-    })*/
 
 });
 function eliminar(id){
@@ -110,12 +98,12 @@ function eliminar(id){
       console.error("Error removing document: ", error);
   });
 }
- return dataPost;
+return dataPost;
 } 
 
 /*-------Agregar Post--------*/ 
 
-   var db = firebase.firestore();
+  var db = firebase.firestore();
 
    // Agregar Post
   function crear(form){
@@ -138,10 +126,8 @@ function eliminar(id){
 /*---- ELIMINAR POSTS ---- */
 
 /*function eliminar(id){
-
   //const btnEliminarPost = dataPost.querySelector(".btn-Eliminar");
   //btnEliminarPost.dataset.id
-
   db.collection("posts").doc(id).delete().then(function() {
       console.log("Document successfully deleted!");
       //const btnEliminar = dataPost.querySelector("#btnEliminar");
@@ -152,3 +138,6 @@ function eliminar(id){
 
 export {signUpGoo, registrar, logueo, crear};
 
+//hacer una varialble donde se guarde el id, guardar en localstorage
+//pasarlo a setitem 
+//getitem

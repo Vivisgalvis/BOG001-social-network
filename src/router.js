@@ -1,6 +1,6 @@
 import inicio from "./views/home.js";
 import ingreso from "./views/login.js";
-import registro from "./views/singup.js";
+import registro from "./views/signup.js";
 import posts from "./views/timeLine.js"
 
 const container = document.querySelector("#root");

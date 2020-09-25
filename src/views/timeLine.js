@@ -34,11 +34,11 @@ export default () => {
     crearPost.appendChild(seccionPost); 
     const form = crearPost.querySelector("#formTimeLine");
 
-     /* ------ LEER POST -------*/
+    /* ------ LEER POST -------*/
 
     const data = crearPost.querySelector("#data");
     const leerPosts = leerPost(data,crearPost);
-    crearPost.appendChild(leerPosts);
+    crearPost.appendChild(leerPosts); 
 
 
     /* ------ AGREGAR POST -------*/
@@ -47,15 +47,7 @@ form.addEventListener ('submit', (e) => {
     e.preventDefault();
     const post = form.posts.value;
     crear(form);
-});
-
-<<<<<<< HEAD
-    /* ------ PUBLICAR POST -------*/
-=======
-   /* ------ ELIMINAR POSTS -------*/
->>>>>>> 6896907a4a61b7213b5edeeb636e65d4be0bb54f
-
-  
+});  
 
     return crearPost
 }
