@@ -30,9 +30,9 @@ const router = (route) => {
     case '#welcome':
         container.innerHTML = "";
         const page4 = posts();
-        background.backgroundImage = "url('./images/foodie3.jpeg')";
+        background.backgroundImage = "url('./images/foodie4.jpg')";
         container.appendChild(page4);
-        console.log("Bienvenido a FoodieFook")
+        //console.log("Bienvenido a FoodieFook")
         break;
     
       default:
