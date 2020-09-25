@@ -1,3 +1,6 @@
+//import { editar } from "../views/timeLine.js"
+import { manejadorEvento } from '../views/timeLine.js'
+
 /*Ingresar a la aplicacion*/
 
 function logueo (email,password){
@@ -7,6 +10,7 @@ function logueo (email,password){
   .catch( function(error) {
     var errorCode = error.code;
     var errorMessage = error.message;
+   
     });
 }
 
@@ -18,12 +22,12 @@ function registrar(email ,password){
     firebase.auth().createUserWithEmailAndPassword(email,password).then((result)=> {
     firebase.auth().signInWithEmailAndPassword(email,password).then((result2)=> {
     window.location.hash = "#welcome";
-  }) 
-})
-.catch( function(error) {
-var errorCode = error.code;
-var errorMessage = error.message;
-});
+   }) 
+ })
+ .catch( function(error) {
+ var errorCode = error.code;
+ var errorMessage = error.message;
+ });
 }
 
 
@@ -60,84 +64,116 @@ function signUpGoo() {
     dataPost.innerHTML = "";
 
     querySnapshot.forEach((doc) => {
-      
-        dataPost.innerHTML += `
-        
-        <div class="container-post">
+     
+      const post = document.createElement("div")
+        post.className = 'container-post'
+
+        post.innerHTML = `
+        <div class="containerTimeline">
         <p>${doc.data().first}</p>
         <button class="btn-eliminar" data-id='${doc.id}' >Eliminar</button>
-        <button class="btn-editar" data-id='${doc.id}' data-post='${doc.data().first}'>Editar</button>
+        <button class="btn-editar" data-id='${doc.id}'  data-post='${doc.data().first}'>Editar</button>
         </div>
-      `
-      // EVENTO DE ELIMINAR POST
+       `
+      /*-------EVENTO ELIMINAR POST--------*/ 
 
-    const btnsEliminar = dataPost.querySelectorAll(".btn-eliminar") ;
-    console.log(btnsEliminar)
-      
-    btnsEliminar.forEach((btnEliminar) => {
-      btnEliminar.addEventListener('click', (e) => {
+       const btnEliminar = post.querySelector(".btn-eliminar") ;
+       
+       btnEliminar.addEventListener('click', (e) => {
         e.preventDefault();
-        let id = e.target.getAttribute('data-id');
+        let id = doc.id
         eliminar(id);
-      })
+      
     })
+      
+    /*-------EVENTO EDITAR POST--------*/ 
+
+    const btnEditar = post.querySelector(".btn-editar") ;
+    
+     btnEditar.addEventListener('click', (e) => {
+     e.preventDefault();
+     let idEditar = doc.id;
+     let postEditar = doc.data().first
+     editar(idEditar,postEditar);
+  
+ })
+
+    dataPost.appendChild(post)
+
     });
+    /*-------ELIMINAR POSTS --------*/ 
 
-
-
-});
-function eliminar(id){
+ function eliminar(id){
 
   const btnEliminarPost = dataPost.querySelector(".btn-Eliminar");
-  //btnEliminarPost.dataset.id
+  
 
   db.collection("posts").doc(id).delete().then(function() {
       console.log("Document successfully deleted!");
-      //const btnEliminar = dataPost.querySelector("#btnEliminar");
+      
   }).catch(function(error) {
       console.error("Error removing document: ", error);
   });
 }
-return dataPost;
+
+});
+
+  return dataPost;
 } 
 
 /*-------Agregar Post--------*/ 
 
-  var db = firebase.firestore();
+   var db = firebase.firestore();
 
    // Agregar Post
   function crear(form){
-    //const form = crearPost.querySelector("#formTimeLine");
-      const posts = form.querySelector("#posts").value;
-
-    db.collection("posts").add({
+   
+    const posts = document.querySelector("#posts").value;
+     
+      db.collection("posts").add({
         first: posts
         //last: "Lovelace",
     })
     .then(function(docRef) {
         //console.log("Document written with ID: ", docRef.id);
-        const posts = form.querySelector("#posts").value = "";
+        const posts = document.querySelector("#posts").value = "";
+        
     })
     .catch(function(error) {
         console.error("Error adding document: ", error);
     });
 };
 
-/*---- ELIMINAR POSTS ---- */
+/*-------EDITAR POSTS --------*/
 
-/*function eliminar(id){
-  //const btnEliminarPost = dataPost.querySelector(".btn-Eliminar");
-  //btnEliminarPost.dataset.id
-  db.collection("posts").doc(id).delete().then(function() {
-      console.log("Document successfully deleted!");
-      //const btnEliminar = dataPost.querySelector("#btnEliminar");
-  }).catch(function(error) {
-      console.error("Error removing document: ", error);
-  });
-}*/
+function editar(id,posts){
+
+  document.querySelector("#posts").value = posts;
+  let boton = document.getElementById("btn-publicar");
+  boton.style.display='none'
+  const btnActualizar = document.getElementById("btn-actualizar")
+  btnActualizar.style.display='block'
+  btnActualizar.addEventListener('click' , manejadorEdicion )
+
+ function manejadorEdicion (){
+    
+      var dataRef = db.collection("posts").doc(id);
+      const posts = document.querySelector("#posts").value;
+
+      return dataRef.update({
+          first: posts 
+      })
+      .then(function() {
+          console.log("Document successfully updated!");
+          boton.style.display='block'
+          btnActualizar.style.display='none'
+          document.querySelector("#posts").value = "";
+      })
+      .catch(function(error) {
+          // The document probably doesn't exist.
+          console.error("Error updating document: ", error);
+      });
+  }
+}
 
 export {signUpGoo, registrar, logueo, crear};
-
-//hacer una varialble donde se guarde el id, guardar en localstorage
-//pasarlo a setitem 
-//getitem
