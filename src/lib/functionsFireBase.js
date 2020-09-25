@@ -69,10 +69,11 @@ function signUpGoo() {
         post.className = 'container-post'
 
         post.innerHTML = `
+        <div class="containerTimeline">
         <p>${doc.data().first}</p>
         <button class="btn-eliminar" data-id='${doc.id}' >Eliminar</button>
         <button class="btn-editar" data-id='${doc.id}'  data-post='${doc.data().first}'>Editar</button>
-        
+        </div>
        `
       /*-------EVENTO ELIMINAR POST--------*/ 
 
@@ -105,11 +106,11 @@ function signUpGoo() {
  function eliminar(id){
 
   const btnEliminarPost = dataPost.querySelector(".btn-Eliminar");
-  //btnEliminarPost.dataset.id
+  
 
   db.collection("posts").doc(id).delete().then(function() {
       console.log("Document successfully deleted!");
-      //const btnEliminar = dataPost.querySelector("#btnEliminar");
+      
   }).catch(function(error) {
       console.error("Error removing document: ", error);
   });
@@ -126,18 +127,16 @@ function signUpGoo() {
 
    // Agregar Post
   function crear(form){
-    //const form = crearPost.querySelector("#formTimeLine");
-      const posts = form.querySelector("#posts").value;
-      
-      
-
-    db.collection("posts").add({
+   
+    const posts = document.querySelector("#posts").value;
+     
+      db.collection("posts").add({
         first: posts
         //last: "Lovelace",
     })
     .then(function(docRef) {
         //console.log("Document written with ID: ", docRef.id);
-        const posts = form.querySelector("#posts").value = "";
+        const posts = document.querySelector("#posts").value = "";
         
     })
     .catch(function(error) {
@@ -145,33 +144,19 @@ function signUpGoo() {
     });
 };
 
- /*-------ELIMINAR POSTS --------*/ 
-
- /*function eliminar(id){
-
-  const btnEliminarPost = dataPost.querySelector(".btn-Eliminar");
-  //btnEliminarPost.dataset.id
-
-  db.collection("posts").doc(id).delete().then(function() {
-      console.log("Document successfully deleted!");
-      //const btnEliminar = dataPost.querySelector("#btnEliminar");
-  }).catch(function(error) {
-      console.error("Error removing document: ", error);
-  });
-}/*
-
-
 /*-------EDITAR POSTS --------*/
 
 function editar(id,posts){
 
   document.querySelector("#posts").value = posts;
-  let boton = document.querySelector("#btn-publicar");
-  boton.innerHTML = 'Editar';
-  boton.removeEventListener('submit' , manejadorEvento)
-  boton.addEventListener('click' , manejadorEdicion )
+  let boton = document.getElementById("btn-publicar");
+  boton.style.display='none'
+  const btnActualizar = document.getElementById("btn-actualizar")
+  btnActualizar.style.display='block'
+  btnActualizar.addEventListener('click' , manejadorEdicion )
 
  function manejadorEdicion (){
+    
       var dataRef = db.collection("posts").doc(id);
       const posts = document.querySelector("#posts").value;
 
@@ -180,10 +165,8 @@ function editar(id,posts){
       })
       .then(function() {
           console.log("Document successfully updated!");
-          boton.innerHTML = 'Publicar';
-          boton.removeEventListener('click' , manejadorEdicion)
-
-          boton.addEventListener('submit' , manejadorEvento)
+          boton.style.display='block'
+          btnActualizar.style.display='none'
           document.querySelector("#posts").value = "";
       })
       .catch(function(error) {
