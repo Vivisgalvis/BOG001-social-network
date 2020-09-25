@@ -266,7 +266,86 @@ span, .eye {
 
 .containerTimeline {
     display: flex;
+    justify-content: center;
 }
+
+.form-timeline {
+  margin-top: 15%;
+}
+
+.titulo-post {
+  text-align: center;
+  margin-bottom: 10%;
+}
+
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: space-between;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0 auto;
+  max-width: 1200px;
+  position: relative;
+}
+
+.card > div{
+  width: 60%;
+  height: 215px;
+  background: #EAE6E6;;
+  box-shadow: 36px 8px 64px rgba(2, 3, 3, 0.4), inset -8px -6px 80px rgba(248, 249, 249, 0.03);
+  border-radius: 24px;
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+  display: inline;
+  /* flex-direction:column;
+  justify-content: space-between;
+  display: flex; */
+}
+
+.card-post {
+  position: relative;
+  transition: 3s ease all;
+  transform: rotateY(0deg);
+  transform-style:preserve-3d;
+  cursor: pointer;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.card-post p {
+  color: #324376;
+}
+
+.card-post .flexbox{
+  display:flex;
+  justify-content:space-between;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+
+
+.btns {
+  width: 15%;
+  margin-top: 40%;
+  padding: 2%;
+  margin-left: 4%;
+  margin-right: 3%;
+}
+
+.btns:hover {
+  background: #324376;
+}
+
+/* .btn-editar {
+  
+}
+
+
+
+.btn-editar */
 
 
 /*-------MENU RESPONSIVE--------*/

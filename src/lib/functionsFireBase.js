@@ -69,10 +69,14 @@ function signUpGoo() {
         post.className = 'container-post'
 
         post.innerHTML = `
-        <div class="containerTimeline">
-        <p>${doc.data().first}</p>
-        <button class="btn-eliminar" data-id='${doc.id}' >Eliminar</button>
-        <button class="btn-editar" data-id='${doc.id}'  data-post='${doc.data().first}'>Editar</button>
+        <div class="containerTimeline card">
+          <div class="card-post">
+            <p>${doc.data().first}</P>
+            <button class="btns btn-editar" data-id='${doc.id}'  data-post='${doc.data().first}'> <i class="fas fa-edit"></i></button>
+            <button class="btns btn-eliminar" data-id='${doc.id}' > <i class="fas fa-trash-alt"></i></button>
+            <button class="btns btn-adjuntar" > <i class="fas fa-paperclip"></i></button>
+            <button class="btns btn-like"> <i class="fas fa-heart"></i></button>
+            </div>
         </div>
        `
       /*-------EVENTO ELIMINAR POST--------*/ 
