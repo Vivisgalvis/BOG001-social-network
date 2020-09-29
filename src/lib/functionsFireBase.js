@@ -1,7 +1,8 @@
 //import { editar } from "../views/timeLine.js"
 import { manejadorEvento } from '../views/timeLine.js'
+// const storage = firebase.storage();
 
-/*Ingresar a la aplicacion*/
+/*------- INGRESAR A LA APLCACION -----*/
 
 function logueo (email,password){
   firebase.auth().signInWithEmailAndPassword(email,password).then((result) =>{
@@ -10,29 +11,26 @@ function logueo (email,password){
   .catch( function(error) {
     var errorCode = error.code;
     var errorMessage = error.message;
-   
-    });
+});
 }
 
+/*------- CREAR USUARIO Y QUEDAR LOGUEADO -----*/
 
-
-/*Crear usuario y quedar logueado*/
 function registrar(email ,password){
 
     firebase.auth().createUserWithEmailAndPassword(email,password).then((result)=> {
     firebase.auth().signInWithEmailAndPassword(email,password).then((result2)=> {
     window.location.hash = "#welcome";
-   }) 
- })
- .catch( function(error) {
- var errorCode = error.code;
- var errorMessage = error.message;
- });
+}) 
+})
+.catch( function(error) {
+const errorCode = error.code;
+const errorMessage = error.message;
+});
 }
 
+/*------- LOGUEAR E INGRESAR CON GOOGLE -----*/
 
-
-/*loguear e ingresar con google*/
 function signUpGoo() {
 
   const provider = new firebase.auth.GoogleAuthProvider();
@@ -55,8 +53,8 @@ function signUpGoo() {
       // ...
     })};
 
-    /*------- Leer datos -----*/
-
+    /*------- LEER DATOS -----*/
+    
   export default(data,crearPost) => {
     const dataPost = crearPost.querySelector("#data");
 
@@ -64,7 +62,7 @@ function signUpGoo() {
     dataPost.innerHTML = "";
 
     querySnapshot.forEach((doc) => {
-     
+
       const post = document.createElement("div")
         post.className = 'container-post'
 
@@ -74,40 +72,39 @@ function signUpGoo() {
             <p>${doc.data().first}</P>
             <button class="btns btn-editar" data-id='${doc.id}'  data-post='${doc.data().first}'> <i class="fas fa-edit"></i></button>
             <button class="btns btn-eliminar" data-id='${doc.id}' > <i class="fas fa-trash-alt"></i></button>
-            <button class="btns btn-adjuntar" > <i class="fas fa-paperclip"></i></button>
+            <label class="btns btn-adjuntar">
+            <input id="btnAdjuntar" type="file" value="uploadFile" class="btns btn-adjuntar" hidden><i class="fas fa-paperclip"></i> 
+            </label>
             <button class="btns btn-like"> <i class="fas fa-heart"></i></button>
             </div>
         </div>
-       `
+      `
       /*-------EVENTO ELIMINAR POST--------*/ 
 
-       const btnEliminar = post.querySelector(".btn-eliminar") ;
-       
-       btnEliminar.addEventListener('click', (e) => {
+      const btnEliminar = post.querySelector(".btn-eliminar") ;
+      
+      btnEliminar.addEventListener('click', (e) => {
         e.preventDefault();
         let id = doc.id
         eliminar(id);
-      
     })
       
     /*-------EVENTO EDITAR POST--------*/ 
 
     const btnEditar = post.querySelector(".btn-editar") ;
     
-     btnEditar.addEventListener('click', (e) => {
-     e.preventDefault();
-     let idEditar = doc.id;
-     let postEditar = doc.data().first
-     editar(idEditar,postEditar);
-  
- })
-
+    btnEditar.addEventListener('click', (e) => {
+    e.preventDefault();
+    let idEditar = doc.id;
+    let postEditar = doc.data().first
+    editar(idEditar,postEditar);
+})
     dataPost.appendChild(post)
+});
 
-    });
     /*-------ELIMINAR POSTS --------*/ 
 
- function eliminar(id){
+function eliminar(id){
 
   const btnEliminarPost = dataPost.querySelector(".btn-Eliminar");
   
@@ -120,31 +117,40 @@ function signUpGoo() {
   });
 }
 
+  /* ------ SUBIR IMAGEN A LA COLECCION -------*/
+
+  const btnUpload = document.getElementById("btnAdjuntar").value;
+  console.log(btnUpload)
+  btnUpload.addEventListener("change", (e) => {
+    console.log(btnUpload)
+    const file = e.target.files[0];
+    const user = firebase.auth().currentUser;
+    uploadImg(file, user.uid);
+});
 });
 
   return dataPost;
 } 
 
-/*-------Agregar Post--------*/ 
 
-   var db = firebase.firestore();
+/*------- AGREGAR POST -----*/
+
+const db = firebase.firestore();
 
    // Agregar Post
   function crear(form){
-   
-    const posts = document.querySelector("#posts").value;
-     
-      db.collection("posts").add({
-        first: posts
-        //last: "Lovelace",
+
+  const posts = document.querySelector("#posts").value;
+    db.collection("posts").add({
+      first: posts
+      //last: "Lovelace",
     })
     .then(function(docRef) {
         //console.log("Document written with ID: ", docRef.id);
         const posts = document.querySelector("#posts").value = "";
-        
     })
     .catch(function(error) {
-        console.error("Error adding document: ", error);
+      console.error("Error adding document: ", error);
     });
 };
 
@@ -159,9 +165,9 @@ function editar(id,posts){
   btnActualizar.style.display='block'
   btnActualizar.addEventListener('click' , manejadorEdicion )
 
- function manejadorEdicion (){
+function manejadorEdicion (){
     
-      var dataRef = db.collection("posts").doc(id);
+      const dataRef = db.collection("posts").doc(id);
       const posts = document.querySelector("#posts").value;
 
       return dataRef.update({
@@ -180,4 +186,49 @@ function editar(id,posts){
   }
 }
 
-export {signUpGoo, registrar, logueo, crear};
+  /*------- LOG OUT --------*/
+
+  export const exit = () => {
+      firebase.auth().signOut()
+        .then(() => {
+          localStorage.clear();
+        })
+        .catch((error) => {
+          alert(error); //An error happened.
+        });
+    };
+
+    /*------- SUBIR IMG AL POST --------*/
+
+    function uploadImg (file, uid) {
+      console.log(uploadImg)
+      const refStorage = firebase.storage().ref(`imgPost/${uid}/${file.name}`);
+      const task = refStorage.put(file);
+    
+      task.on(
+        'state_changed',
+        (snapshot) => {
+          const porcentaje = ((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+          localStorage.setItem('uploadImg', porcentaje);
+        },
+        (error) => {
+          alert(error);
+        },
+        () => {
+          task.snapshot.ref
+            .getDownloadURL()
+            .then((url) => {
+              localStorage.setItem('imgNewPost', url);
+            })
+            .catch((error) => {
+              alert(error);
+            });
+        },
+      );
+    };
+
+export {signUpGoo, registrar, logueo, crear };
+
+
+
+

@@ -1,6 +1,5 @@
 import { logueo, signUpGoo } from "../lib/functionsFireBase.js";
 
-
 export default () => {
   const loginUsuario = document.createElement("div");
   const seccionLogUsuario = document.createElement("section")
@@ -45,6 +44,7 @@ export default () => {
   const form = loginUsuario.querySelector("#formLogin");
 
   /* ------ OCULTAR/MOSTRAR CONTRASEÑA -------*/
+
   const togglePassword1 = () => {
     const pwd = loginUsuario.querySelector('#passLogin');
     const eyeOpen = loginUsuario.querySelector('#eye-open');
@@ -65,6 +65,7 @@ export default () => {
 
 
   /* ------ INGRESAR A LA APLICACION -------*/
+
   form.addEventListener('submit', (e) => {
     //console.log(e)
     e.preventDefault();
@@ -76,6 +77,7 @@ export default () => {
   });
 
   /* ------ INGRESAR CON GOOGLE -------*/
+  
   const google = loginUsuario.querySelector("#gooLogin");
 
   google.addEventListener('click', (e) => {

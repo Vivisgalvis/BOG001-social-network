@@ -1,7 +1,5 @@
 import { registrar, signUpGoo } from '../lib/functionsFireBase.js'
 
-
- 
 export default () => {
   const crearUsuario = document.createElement ("div");
   const seccionUsuario = document.createElement("section");
@@ -48,6 +46,7 @@ export default () => {
   const form = crearUsuario.querySelector("#formSign");
   
   /* ------ OCULTAR/MOSTRAR CONTRASEÑA -------*/
+
   const togglePassword = () => {
     const pwd = crearUsuario.querySelector('#password');
     const eyeOpen = crearUsuario.querySelector('#eye-open');
@@ -67,6 +66,7 @@ export default () => {
   eyeIcons.addEventListener('click', togglePassword);
 
   /* ------ CREAR USUARIO Y QUEDAR LOGUEADO-------*/
+
   form.addEventListener ('submit', (e) => {
     console.log(e)
     e.preventDefault();
@@ -81,6 +81,7 @@ export default () => {
   });
 
   /* ------ INGRESAR CON GOOGLE-------*/
+
   const google = crearUsuario.querySelector("#goo");
 
   google.addEventListener('click', (e) => {
@@ -89,7 +90,6 @@ export default () => {
     signUpGoo();
     
   })
- 
   return crearUsuario;
 }
 

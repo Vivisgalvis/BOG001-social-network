@@ -20,7 +20,6 @@ export default () => {
       <button class="log" type="submit"><a href="/#login">log in</a> </button>
     </div> 
 `;
- 
   const vistaInicio = document.createElement("div");
   vistaInicio.innerHTML = home;
   return vistaInicio;
