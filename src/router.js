@@ -6,8 +6,6 @@ import posts from "./views/timeLine.js"
 const container = document.querySelector("#root");
 let background = document.body.style
 const router = (route) => {
-//container.innerHTML = '';
-  // console.log(route);
   switch (route) {
     case '':
       container.innerHTML = '';
@@ -32,7 +30,6 @@ const router = (route) => {
         const page4 = posts();
         background.backgroundImage = "url('./images/foodie4.jpg')";
         container.appendChild(page4);
-        //console.log("Bienvenido a FoodieFook")
         break;
     
       default:
@@ -45,6 +42,3 @@ const router = (route) => {
 };
 
 export default router;
-
-// aplicar para cambiar la img de fondo en cada ruta 
-// document.body.style.backgroundImage = "urlimage"

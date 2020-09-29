@@ -41,7 +41,6 @@ export default () => {
     <button class="btnpost" id="btn-actualizar" type="submit" style='display:none' >Editar</button>
     </form>
     </div>
-    
     <section id="data">
     </section>
     `;
@@ -66,7 +65,6 @@ const logOut = crearPost.querySelector("#logOut");
 
   logOut.addEventListener('click', () => {
     exit();
-    // console.log("cerro sesion correctamente")
     window.location.hash = "#login";
   });
 

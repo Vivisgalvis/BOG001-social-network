@@ -1,6 +1,4 @@
-//import { editar } from "../views/timeLine.js"
-import { manejadorEvento } from '../views/timeLine.js'
-// const storage = firebase.storage();
+// import { manejadorEvento } from '../views/timeLine.js'
 
 /*------- INGRESAR A LA APLCACION -----*/
 
@@ -69,13 +67,13 @@ function signUpGoo() {
         post.innerHTML = `
         <div class="containerTimeline card">
           <div class="card-post">
-            <p>${doc.data().first}</P>
-            <button class="btns btn-editar" data-id='${doc.id}'  data-post='${doc.data().first}'> <i class="fas fa-edit"></i></button>
-            <button class="btns btn-eliminar" data-id='${doc.id}' > <i class="fas fa-trash-alt"></i></button>
-            <label class="btns btn-adjuntar">
-            <input id="btnAdjuntar" type="file" value="uploadFile" class="btns btn-adjuntar" hidden><i class="fas fa-paperclip"></i> 
+            <p>${doc.data().comentario}</P>
+            <button class="btnes btn-editar" data-id='${doc.id}'  data-post='${doc.data().comentario}'> <i class="fas fa-edit"></i></button>
+            <button class="btnes btn-eliminar" data-id='${doc.id}' > <i class="fas fa-trash-alt"></i></button>
+            <label class="btnes btn-adjuntar">
+            <input id="btnAdjuntar" type="file" value="uploadFile" class="btnes btn-adjuntar" hidden><i class="fas fa-paperclip"></i> 
             </label>
-            <button class="btns btn-like"> <i class="fas fa-heart"></i></button>
+            <button class="btnes btn-like"> <i class="fas fa-heart"></i></button>
             </div>
         </div>
       `
@@ -96,7 +94,7 @@ function signUpGoo() {
     btnEditar.addEventListener('click', (e) => {
     e.preventDefault();
     let idEditar = doc.id;
-    let postEditar = doc.data().first
+    let postEditar = doc.data().comentario
     editar(idEditar,postEditar);
 })
     dataPost.appendChild(post)
@@ -119,19 +117,18 @@ function eliminar(id){
 
   /* ------ SUBIR IMAGEN A LA COLECCION -------*/
 
-  const btnUpload = document.getElementById("btnAdjuntar").value;
-  console.log(btnUpload)
-  btnUpload.addEventListener("change", (e) => {
-    console.log(btnUpload)
-    const file = e.target.files[0];
-    const user = firebase.auth().currentUser;
-    uploadImg(file, user.uid);
-});
+//   const btnUpload = document.getElementById("btnAdjuntar").value;
+//   console.log(btnUpload)
+//   btnUpload.addEventListener("change", (e) => {
+//     console.log(btnUpload)
+//     const file = e.target.files[0];
+//     const user = firebase.auth().currentUser;
+//     uploadImg(file, user.uid);
+// });
 });
 
   return dataPost;
-} 
-
+}
 
 /*------- AGREGAR POST -----*/
 
@@ -140,14 +137,14 @@ const db = firebase.firestore();
    // Agregar Post
   function crear(form){
 
-  const posts = document.querySelector("#posts").value;
+  const post = document.querySelector("#posts").value;
     db.collection("posts").add({
-      first: posts
+      comentario: post
       //last: "Lovelace",
     })
     .then(function(docRef) {
         //console.log("Document written with ID: ", docRef.id);
-        const posts = document.querySelector("#posts").value = "";
+        const post = document.querySelector("#posts").value = "";
     })
     .catch(function(error) {
       console.error("Error adding document: ", error);
@@ -168,10 +165,10 @@ function editar(id,posts){
 function manejadorEdicion (){
     
       const dataRef = db.collection("posts").doc(id);
-      const posts = document.querySelector("#posts").value;
+      const post = document.querySelector("#posts").value;
 
       return dataRef.update({
-          first: posts 
+          comentario: post 
       })
       .then(function() {
           console.log("Document successfully updated!");
@@ -200,32 +197,32 @@ function manejadorEdicion (){
 
     /*------- SUBIR IMG AL POST --------*/
 
-    function uploadImg (file, uid) {
-      console.log(uploadImg)
-      const refStorage = firebase.storage().ref(`imgPost/${uid}/${file.name}`);
-      const task = refStorage.put(file);
+    // function uploadImg (file, uid) {
+    //   console.log(uploadImg)
+    //   const refStorage = firebase.storage().ref(`imgPost/${uid}/${file.name}`);
+    //   const task = refStorage.put(file);
     
-      task.on(
-        'state_changed',
-        (snapshot) => {
-          const porcentaje = ((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-          localStorage.setItem('uploadImg', porcentaje);
-        },
-        (error) => {
-          alert(error);
-        },
-        () => {
-          task.snapshot.ref
-            .getDownloadURL()
-            .then((url) => {
-              localStorage.setItem('imgNewPost', url);
-            })
-            .catch((error) => {
-              alert(error);
-            });
-        },
-      );
-    };
+    //   task.on(
+    //     'state_changed',
+    //     (snapshot) => {
+    //       const porcentaje = ((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+    //       localStorage.setItem('uploadImg', porcentaje);
+    //     },
+    //     (error) => {
+    //       alert(error);
+    //     },
+    //     () => {
+    //       task.snapshot.ref
+    //         .getDownloadURL()
+    //         .then((url) => {
+    //           localStorage.setItem('imgNewPost', url);
+    //         })
+    //         .catch((error) => {
+    //           alert(error);
+    //         });
+    //     },
+    //   );
+    // };
 
 export {signUpGoo, registrar, logueo, crear };
 

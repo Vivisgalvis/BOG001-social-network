@@ -195,8 +195,8 @@ span, .eye {
 
 .g-log {
     margin-left: 32%;
-    margin-top: 23%;
-    color: #F76C5E;
+    margin-top: 177px;
+    color: #324376;
 }
 
 .member {
@@ -299,9 +299,6 @@ span, .eye {
   padding: 20px;
   text-align: center;
   display: inline;
-  /* flex-direction:column;
-  justify-content: space-between;
-  display: flex; */
 }
 
 .card-post {
@@ -325,7 +322,7 @@ span, .eye {
   justify-content: center;
 }
 
-.btns {
+.btnes {
   width: 15%;
   margin-top: 40%;
   padding: 2%;
@@ -333,7 +330,7 @@ span, .eye {
   margin-right: 3%;
 }
 
-.btns:hover {
+.btnes:hover {
   background: #324376;
 }
 
