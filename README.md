@@ -66,26 +66,26 @@ Hay redes sociales de todo tipo y para todo tipo de intereses. Por ejemplo, en u
 
 ### HTML y CSS
 
--   [ ][uso de html semántico.](https://developer.mozilla.org/en-US/docs/GlossarySemantics#Semantics_in_HTML)
--   [ ] Uso de selectores de CSS.
--   [ ] Construir tu aplicación respetando el diseño realizado (maquetación).
--   [ ][uso de flexbox en css.](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+-   [X]uso de html semántico.
+-   [X] Uso de selectores de CSS.
+-   [X] Construir tu aplicación respetando el diseño realizado (maquetación).
+-   [X]uso de flexbox en css.
 
 ### DOM y Web APIs
 
--   [ ] Uso de selectores del DOM.
--   [ ] Manejo de eventos del DOM.
--   [ ][manipulación dinámica del dom.](https://developer.mozilla.org/es/docs/Referencia_DOM_de_Gecko/Introducci%C3%B3n)
+-   [X] Uso de selectores del DOM.
+-   [X] Manejo de eventos del DOM.
+-   [X]manipulación dinámica del dom.
     (appendChild |createElement | createTextNode| innerHTML | textContent | etc.)
 
 ### JavaScript
 
--   [ ] Uso de condicionales (if-else | switch | operador ternario)
--   [ ] Uso de bucles (for | for..in | for..of | while)
--   [ ] Uso de funciones (parámetros | argumentos | valor de retorno)
+-   [X] Uso de condicionales (if-else | switch | operador ternario)
+-   [X] Uso de bucles (for | for..in | for..of | while)
+-   [X] Uso de funciones (parámetros | argumentos | valor de retorno)
 -   [ ] Manipular arrays (filter | map | sort | reduce)
 -   [ ] Manipular objects (key | value)
--   [ ] Uso ES modules ([`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
+-   [X] Uso ES modules ([`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
     | [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export))
 -   [ ] Diferenciar entre expression y statements.
 -   [ ] Diferenciar entre tipos de datos atómicos y estructurados.
@@ -96,41 +96,41 @@ Hay redes sociales de todo tipo y para todo tipo de intereses. Por ejemplo, en u
 
 ### Estructura del código y guía de estilo
 
--   [ ] Organizar y dividir el código en módulos (Modularización)
--   [ ] Uso de identificadores descriptivos (Nomenclatura | Semántica)
+-   [X] Organizar y dividir el código en módulos (Modularización)
+-   [X] Uso de identificadores descriptivos (Nomenclatura | Semántica)
 -   [ ] Uso de linter (ESLINT)
 
 ### Git y GitHub
 
--   [ ] Uso de comandos de git (add | commit | pull | status | push)
--   [ ] Manejo de repositorios de GitHub (clone | fork | gh-pages)
--   [ ] Colaboración en Github (branches | pull requests | |tags)
+-   [X] Uso de comandos de git (add | commit | pull | status | push)
+-   [X] Manejo de repositorios de GitHub (clone | fork | gh-pages)
+-   [X] Colaboración en Github (branches | pull requests | |tags)
 
 ### UX
 
--   [ ] Diseñar la aplicación pensando y entendiendo al usuario.
--   [ ] Crear prototipos para obtener feedback e iterar.
--   [ ] Aplicar los principios de diseño visual (contraste, alineación, jerarquía)
--   [ ] Planear y ejecutar tests de usabilidad.
+-   [X] Diseñar la aplicación pensando y entendiendo al usuario.
+-   [X] Crear prototipos para obtener feedback e iterar.
+-   [X] Aplicar los principios de diseño visual (contraste, alineación, jerarquía)
+-   [X] Planear y ejecutar tests de usabilidad.
 
 ## 6. Checklist
 
--   [ ] Usa VanillaJS.
--   [ ] No hace uso de `this`.
+-   [X] Usa VanillaJS.
+-   [X] No hace uso de `this`.
 -   [ ] Pasa linter (`npm run pretest`)
 -   [ ] Pasa tests (`npm test`)
 -   [ ] Pruebas unitarias cubren un mínimo del 70% de statements, functions y
         lines y branches.
--   [ ] Incluye _Definición del producto_ clara e informativa en `README.md`.
--   [ ] Incluye historias de usuario en `README.md`.
--   [ ] Incluye _sketch_ de la solución (prototipo de baja fidelidad) en
+-   [X] Incluye _Definición del producto_ clara e informativa en `README.md`.
+-   [X] Incluye historias de usuario en `README.md`.
+-   [X] Incluye _sketch_ de la solución (prototipo de baja fidelidad) en
         `README.md`.
--   [ ] Incluye _Diseño de la Interfaz de Usuario_ (prototipo de alta fidelidad)
+-   [X] Incluye _Diseño de la Interfaz de Usuario_ (prototipo de alta fidelidad)
         en `README.md`.
--   [ ] Incluye link a Zeplin o Figma en `README.md`.
+-   [X] Incluye link a Zeplin o Figma en `README.md`.
 -   [ ] Incluye el listado de problemas que detectaste a través de tests de
         usabilidad en el `README.md`.
 -   [ ] UI: Muestra lista y/o tabla con datos y/o indicadores.
 -   [ ] UI: Permite ordenar data por uno o más campos (asc y desc).
 -   [ ] UI: Permite filtrar data en base a una condición.
--   [ ] UI: Es _responsive_.
+-   [X] UI: Es _responsive_.
