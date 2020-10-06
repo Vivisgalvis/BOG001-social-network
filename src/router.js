@@ -13,19 +13,19 @@ const router = (route) => {
       background.backgroundImage = "url('./images/foodie1.jpeg')";  
       container.appendChild(page);
       break;
-    case '/#login':
+    case '#login':
       container.innerHTML = '';
       const page2 = ingreso();
       background.backgroundImage = "url('./images/foodie2.jpeg')";
       container.appendChild(page2);
       break;
-    case '/#signup':
+    case '#signup':
       container.innerHTML = '';
       const page3 = registro();
       background.backgroundImage = "url('./images/foodie3.jpeg')";
       container.appendChild(page3); 
       break;
-    case '/#welcome':
+    case '#welcome':
         container.innerHTML = "";
         const page4 = posts();
         background.backgroundImage = "url('./images/foodie4.jpg')";
