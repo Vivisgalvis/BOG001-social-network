@@ -16,8 +16,8 @@ export default () => {
     </div>
     </section>
     <div class="btns">
-      <button class="sign" type="submit"><a href="/#signup">sign up</a> </button>
-      <button class="log" type="submit"><a href="/#login">log in</a> </button>
+      <button class="sign" type="submit"><a href="#signup">sign up</a> </button>
+      <button class="log" type="submit"><a href="#login">log in</a> </button>
     </div> 
 `;
   const vistaInicio = document.createElement("div");
