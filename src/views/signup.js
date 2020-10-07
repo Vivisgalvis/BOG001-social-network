@@ -37,7 +37,7 @@ export default () => {
           <p class="food fo-sign">Already a foodiebook member?</p>
         </div>
         <div class="member">
-          <p class="here he-sign"><a href="/#login">Log in here.</a></p>
+          <p class="here he-sign"><a href="#login">Log in here.</a></p>
         </div>
     </form>   
   `;

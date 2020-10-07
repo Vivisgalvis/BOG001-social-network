@@ -36,7 +36,7 @@ export default () => {
     <p class="food">Not a foodiebook member?</p>
   </div>
   <div class="member">
-    <p class="here"><a href="/#signup">Sign up here.</a></p>
+    <p class="here"><a href="#signup">Sign up here.</a></p>
   </div>
   </form> 
   `;
